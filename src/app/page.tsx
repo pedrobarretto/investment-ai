@@ -1,11 +1,12 @@
-import { InputBar, NavBar } from '@/components';
-import Image from 'next/image';
+import { InputBar, NavBar, TextBox } from '@/components';
+import { InvestmentContextProvider } from '@/context';
 
 export default function Home() {
   return (
-    <div>
+    <InvestmentContextProvider>
       <NavBar />
       <InputBar />
-    </div>
+      <TextBox />
+    </InvestmentContextProvider>
   );
 }

@@ -1,12 +1,14 @@
 import { InvestmentType, RiskLevel, TimeSpent } from '@/enums';
 import { useState } from 'react';
 import axios from 'axios';
+import { useInvestment } from '@/hooks';
 
 export function InputBar() {
   const [riskLevel, setRiskLevel] = useState('');
   const [timeSpent, setTimeSpent] = useState('');
   const [value, setValue] = useState('');
   const [type, setType] = useState('');
+  const { setText } = useInvestment();
 
   async function sendPrompt() {
     console.log(riskLevel, timeSpent, value, type);
@@ -27,6 +29,7 @@ export function InputBar() {
 
     try {
       const response = await axios.post(url, data, { headers });
+      setText(response.data.text);
       console.log(response.data);
     } catch (error) {
       console.error(error);
